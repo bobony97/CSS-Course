@@ -1,0 +1,680 @@
+/* ATAJOS
+shift + alt + flecha = duplica contenido
+alt + flecha = mueve la linea de codigo
+ctrl + alt + flecha = Selecciona varias lineas a la vez para escribir */
+
+
+/*------------------------------------------------------------------------------------------------------------------------------------*/
+
+
+/*SELECTORES
+* - Selector global
+# - Selector por id, cada elemento debe tener su propio id, no puede haber ids repetidos
+. - Selector de clase
+
+
+SELECTORES COMBINADOS O MULTIPLES
+p.selector1 - Selector de etiqueta "p" con clase.En caso de tener varias etiquetas "p" pero solo queremos seleccionar un elemento o varios que tambien tengan la clase "selector1"
+.seccion1.estilo-fuente-distinto - Selector de clase multiple
+
+
+ESPECIFICIDAD DE MENOR A MAYOR
+-Etiqueta
+-Clase
+-Id
+-Inline - Esto es al aplicar estilos directo en el elemento
+-!important - Este atributo se coloca en los estilos justo al lado del atributo
+
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+
+UNIDADES DE MEDIDAS
+Relativas: Dependen de algo, varian 
+Fjas: Son las que no cambian
+
+**Las medidas relativas dependen de la caja contenedora
+**Con las medidas relativas podemos adaptar la web segun cambie de tamaño como por ejemplo de escritorio a un celular
+
+Propiedades
+font-size: Tamaño de la letra
+
+Valores
+em: 1 em = 16px. Este valor es dado por defecto por el navegador pero cambia si su contenedor cambia de tamaño
+
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+
+PROPIEDADES DE TEXTO
+font-size: Tamaño de la letra
+font.family: Tipografia
+line-height: Es el tamaño que ocupa la letra
+font-weight: Es el grosor de la letra
+color: Cambia el color de la letra
+
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+
+TIPOS DE CAJAS (display)
+En CSS, los elementos HTML se clasifican generalmente en dos categorías principales según su modelo de caja: elementos en línea y elementos en bloque.
+
+Elementos en Bloque: Toman todo el ancho disponible por defecto y comienzan en una nueva línea.
+La anchura, altura, margen superior e inferior son configurables.
+Ejemplos comunes de elementos en bloque son <div>, <p>, <h1> a <h6>, <ul>, <ol>, <li>, <table>, entre otros.
+
+
+Elementos en Línea: Ocupan solo el ancho necesario y no inician en una nueva línea(no tienen medidas, si quisieramos que tengan medidas deberiamos usar "display: block").
+La altura, margen superior e inferior no afectan al diseño.
+Ejemplos comunes de elementos en línea son <span>, <a>, <strong>, <em>, <img>, entre otros.
+
+Aclaracion: A los elementos en linea no se les puede dar height(alto) ni width(ancho), pero a los elementos en bloque si se los puede modificar
+
+Para cambiar el comportamiento de las cajas tenemos la propiedad "display"
+
+display: inline: Transforma los elementos en bloque en elementos en linea
+display: block: Transforma los elementos en linea en elementos en  bloque
+display: inline-block: Permite darle un ancho y un alto a las cajas, tambien permite poner un elemento al lado del otro
+........ table: Que se comporte como tabla
+........ inline-table: Que se comporte como tabla en linea
+........ table-cell: Al tener una tabla, se comporta como una celda de esa tabla
+........ table-row: Se comporta como una fila de la tabla
+........ table-colum: Se comporta como una columna
+
+
+Propiedades de las Cajas
+Son aquellas propiedades que modifician o afectan a las cajas, su entorno y a su contorno
+
+*background-color: Permite cambiar el color de fondo
+
+padding: Es la distancia que hay entre el borde de la caja y el texto interno. Para asignar valores podemos poner "padding: 10px" y va asignar 10px en los 4 lados, si pónemos 
+-"padding 10px 20px" va asignar 10px arriba y abajo, 20px izquierda y derecha, pero si ponemos "padding 10px 20px 30px 40px" va asignar 10px arriba, 20 a la derecha
+-30 abajo y 40 a la izquierda(va en sentido horario) y si solo definimos 3 parametros el faltante va a tomar el valor de su opuesto.
+marggin: Es la distancia entre 2 cajas y tiene las mismas caracteristicas que "padding"
+border-radius: Es para redondear los bordes de las cajas
+border: 10px solid blue: Esta propiedad permite editar por completo los bordes con tamaño, tipo de borde y color, en ese orden
+box-shadow: 1px 1px 15px 0 #000: Permite añadir sombras a las cajas con las siguientes caracteristicas eje x, eje y, tamaño del desenfoque(tamaño de la sombra), 
+-cuanto borde va a tener(generalmente es 0) y color
+text-shadow: Es lo mismo que "box-shadow pero sin borde(cuarto parametro)
+
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+
+POSICION
+Esta propiedad permite definir el flujo de una web(la forma en la que se van disponiendo de forma natural los elementos)
+Cuando posicionamos un elementos hacemos que adquiera 4 propiedades nuevas top, right, bottom y left
+*position: relative: Especificamos que se posicione relativamente a su posicion original a traves de top, right, bottom y left. Si tenemos un cuadrado rojo y lo movemos 40px hacia abajo
+ -este se desplazara pero sin perder su posicion original(como dejar una copia del cuadrado en la posicion original) haciendo que cualquier elemento que se quiera posicion por debajo
+ -de la posicion original, este se posicionara entre el elemento original y el elemento desplazado.
+ -Al usar "position: relative" se activa una nueva propiedad llamada "z-index", esta propiedad nos va a permitir superponer las cajas aumentando o disminuyendo su valor.
+ -Si tenemos "caja1 y caja2" una arriba de la otra y colocamos un "top: 20px" a la "caja1" esta se va a superponer a "caja2" pero si en "caja2" colocamos la propiedad "z-index: 1"
+ -o cualquier otro valor superior a 1, dicha caja se va a superponer a "caja1" y si colocamos otro "z-index" en "caja1" con un valor superior a 1, "caja1" se va a superponer a "caja2".
+ -Este elemento tiene problemas con sus padres, si tenemos un contenedor con una caja dentro del mismo, ambos con "position: relative" y ambos con un "z-index"(el de la caja superior al de
+ -su contenedor padre) esta no se va a superponer a su hijo, la unica forma de hacer que el "padre se mueva detras del "hijo" es poniendo en la "caja" un "z-index: -1" y en su contenedor
+ -no definir ningun "z-index"
+
+*position: absolute: El elemento perdera sus medidas y su espacio reservado. Si lo movemos usara el elemento posicionado contenedor como referencia. Si no tiene ningun, usara el elemento 
+ -html de referencia.
+ --TIP (Al usar position: absolute, le estamos dando la propiedad de bloque a cualquier elemento, incluso si es un elemento de linea)
+ -Ejemplo: Si tenemos 2 cajas "box1", debajo "box2", y aplicamos la propiedad "position: absolute" en "box1", esta va a perder sus medidas y su espacio haciendo que "box2" tome su lugar
+ -Caso 1
+
+ .box1 {
+    backgroud: red;
+    position: absolute;
+ }
+ .box2 {
+    backgroud: green;
+ }
+
+ -caso 2
+ - .box1 {
+    backgroud: red;
+ }
+ .box2 {
+    backgroud: green;
+    position: absolute;
+    bottom: 0px;
+ }
+
+ En este caso al colocar "absolute" en "box2" esta se movera hacia la parte inferior de la pantalla, ya que no tiene un contenedor padre como referencia, esta toma como referencia el body,
+ pero si tuviera un contenedor se moveria de la misma forma pero dentro del contenedor
+
+*position: fixed: El elemento perdera sus medidas y su espacio reservado. 
+-Si lo movemos usara el body como referencia, y ademas se quedara fijo en esa posicion aunque hagamos scroll
+
+*position: sticky: Se comporta similar a relative y fixed, lo que hace sticky es quedarse estatico o pegado a una misma posicion mientras se hace scroll con la diferencia que solo 
+-se va a quedar pegado hasta que se recorra un alto (height) establecido, una vez pase ese alto establecido al hacer scroll el elemento seleccionado con sticky se va a despegar.
+-Dicho alto tambien corresponde a su contenedor
+
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+
+OVERFLOW (y,x)
+Es la barra de scroll
+*overflor: auto: Las barras de desplazamiento solo aparecen cuando es necesario (si hay contenido fuera de la vista).
+*overflor: hidden: Cualquier contenido que sobresalga del contenedor se oculta y no es visible.
+*overflow: scroll: Se agrega barras de desplazamiento (ya sea horizontal o vertical) al contenedor, permitiendo que el usuario desplace el contenido que está fuera de la vista.
+
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+
+FLOAT
+se utiliza para especificar si un elemento debe estar a la izquierda o a la derecha de su contenedor y cómo los elementos adyacentes deben fluir alrededor de él.
+*float: left;
+*float: right;
+
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+
+PSEUDO-CLASES
+Escuchan eventos
+*:hover: Escucha eventos cuando el mouse esta encima,En el siguiente ejemplo cuando el mouse pase por encima del elemento va a cambiar el fondo a rojo
+   caja:hover {
+      background: red;
+   }
+
+*:link: Permite marcar los links que no fueron visitados
+
+*:focus: Cuando le das click y enfocas el elementos puede cambiar su estilo. Funciona en inputs
+
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+
+OBJECT-FIT
+se utiliza para especificar cómo un elemento <img> o <video> debe ajustarse al cuadro que lo contiene
+
+*contain: Es el valor por defecto, el contenido se ajusta al cuadro manteniendo su relación de aspecto original. Puede haber espacios en blanco alrededor del contenido 
+-si no llena completamente el cuadro.
+
+*cover: El contenido se ajusta al cuadro manteniendo su relación de aspecto original, pero puede recortarse para llenar completamente el cuadro.
+
+*none (predeterminado): El contenido no se ajusta de ninguna manera. Puede superponerse o extenderse más allá del cuadro.
+
+*fill: El contenido se estira para llenar completamente el cuadro. Puede cambiar la relación de aspecto del contenido.
+
+*scale-down: Similar a contain, pero si el contenido es más grande que el cuadro, se ajusta como contain; de lo contrario, se ajusta como none.
+
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+
+COLORIZACION
+Ver colores https://htmlcolorcodes.com/es/nombres-de-los-colores/   https://www.w3schools.com/colors/colors_picker.asp
+Los colores primarios en informatica son rojo, verde y azul (RGB).
+*rgb(): Por cada inicial del color tenemos una medida que van del 0(nada de ese color, hasta el 255, todo el color)  
+
+*rgba(): Funciona igual que "rgb" con la diferencia de que la "a" representa la opacidad, esta se mide desde el 0(donde 0 desaparece) hasta 1(donde la opacidad esta al maximo)
+
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+
+FLEXBOX
+Flexbox requiere de 2 cosas, flexcontainer, en donde va a contener los items, y sus respectivos items.
+Al usar display: flex en un contenedor, este se va a comportar como un contenedor, en donde se van a notar los cambios es dentro del contenedor 
+Flexbox tiene 2 ejes:             
+                                                      cross axis
+                                                         |   cross-start
+                                                         |
+                                                         |
+                                                         |
+                                                         |
+                                   main-start            |                 main-end
+                                -------------------------|------------------------->  main axis
+                                                         |
+                                                         |
+                                                         |
+                                                         |
+                                                         |
+                                                         |
+                                                         |
+                                                         v  cross-end
+
+*display: flex: se utiliza para convertir un elemento contenedor (padre) en un contenedor flexible, activando el modelo de diseño de Flexbox en sus elementos hijos.
+
+ALINEAMIENTO DEL MAIN AXIS
+FLEX-DIRECTION 
+Se utiliza para establecer la dirección principal en el contenedor flexible, controlando la dirección en la que los elementos flexibles se colocan en el eje principal.
+Puede tomar uno de los siguientes valores:
+*row (valor predeterminado): Los elementos flexibles se colocan en la misma dirección del texto, de izquierda a derecha.
+
+*row-reverse: Los elementos flexibles se colocan en la misma dirección del texto, pero de derecha a izquierda.
+
+*column: Los elementos flexibles se colocan de arriba a abajo.
+
+*column-reverse: Los elementos flexibles se colocan de abajo a arriba.
+
+FLEX-WRAP
+se utiliza para controlar si los elementos flexibles deben envolverse en varias líneas dentro del contenedor flexible.
+Estos valores te permiten controlar cómo se maneja el desbordamiento de los elementos flexibles dentro del contenedor cuando el espacio es insuficiente.
+Puede tomar los siguientes valores:
+*nowrap (valor predeterminado): Los elementos flexibles se colocan en una sola línea y no se envuelven.
+
+*wrap: Los elementos flexibles se envuelven en varias líneas si es necesario.
+
+*wrap-reverse: Los elementos flexibles se envuelven en varias líneas, pero en orden inverso.
+
+FLEX-FLOW
+Es un atajo que combina las propiedades flex-direction y flex-wrap en una sola declaración.
+*flex-flow: <flex-direction> <flex-wrap>;
+
+JUSTIFY CONTENT
+se utiliza dentro de un contenedor flexible (con display: flex; o display: inline-flex;) para controlar la alineación de los elementos a lo largo del eje principal. 
+Esta propiedad se aplica al contenedor flexible, no a los elementos flexibles dentro de él
+*flex-start (valor predeterminado): Los elementos se alinean al principio del contenedor flexible. El espacio sobrante, si lo hay, se coloca al final.
+
+*flex-end: Los elementos se alinean al final del contenedor flexible. El espacio sobrante, si lo hay, se coloca al principio.
+
+*center: Los elementos se alinean en el centro del contenedor flexible.
+
+*space-between: Los elementos se distribuyen a lo largo del eje principal con un espacio igual entre ellos, pero no en los bordes del contenedor.
+
+*space-around: Los elementos se distribuyen a lo largo del eje principal con un espacio igual alrededor de ellos.
+
+*space-evenly: Los elementos se distribuyen a lo largo del eje principal con un espacio igual alrededor de ellos, incluidos los bordes del contenedor.
+
+
+ALINEAMIENTO DEL CROSS AXIS
+ALIGN-ITEM
+Se utiliza dentro de un contenedor flexible (display: flex; o display: inline-flex;) para controlar la alineación de los elementos a lo largo del eje transversal.
+También es utilizada para alinear una unica fila de items dentro de un contenedor
+*stretch (valor predeterminado): Los elementos se estiran para ocupar el espacio completo del contenedor en el eje transversal.
+
+*flex-start: Los elementos se alinean al principio del eje transversal.
+
+*flex-end: Los elementos se alinean al final del eje transversal.
+
+*center: Los elementos se alinean en el centro del eje transversal.
+
+*baseline: Los elementos se alinean en su línea de base.
+
+ALIGN-CONTENT
+se utiliza en un contenedor flexible (display: flex; o display: inline-flex;) para controlar la alineación de las líneas de elementos flexibles a lo largo del eje transversal 
+cuando hay múltiples líneas debido al uso de flex-wrap
+*stretch (valor predeterminado): Las líneas se estiran para ocupar el espacio disponible.
+
+*flex-start: Las líneas se alinean al principio del contenedor.
+
+*flex-end: Las líneas se alinean al final del contenedor.
+
+*center: Las líneas se alinean en el centro del contenedor.
+
+*space-between: Distribuye uniformemente el espacio entre las líneas, pero no alrededor de ellas.
+
+*space-around: Distribuye uniformemente el espacio alrededor de las líneas.
+
+*space-evenly: Distribuye uniformemente el espacio alrededor de las líneas, incluyendo el espacio antes de la primera línea y después de la última.
+
+
+PROPIEDADES DE LOS ITEMS
+Son propiedades que se le asignan a los items dentro de un contenedor
+*flex-grow: valor:  se utiliza para especificar la capacidad de crecimiento de un elemento flexible en relación con los otros elementos flexibles dentro del mismo contenedor.
+-Si hay un especio sobrante de 300px, tenemos 3 items que miden como maximo 100px(width) y tenemos un flex-grow :1 ese espacio sobrante(300px) se va a distribuir entre los 3 items,
+-dandoles un width de 200px a cada item
+
+*flex-basis: valor:  se utiliza para establecer el tamaño inicial de un elemento flexible antes de que se distribuya el espacio adicional o se apliquen las reglas de crecimiento 
+-o contracción. La propiedad flex-basis define el tamaño base del elemento en el eje principal.
+
+*flex-shrink: se utiliza para determinar la capacidad de un elemento flexible para contraerse si hay espacio insuficiente en el contenedor flexible.
+-Indica la proporción en la que el elemento puede reducir su tamaño en relación con otros elementos flexibles en el mismo contenedor.
+-valor: Un número sin unidad que representa la proporción de la capacidad de contraerse en relación con otros elementos flexibles en el mismo contenedor.
+-Si todos los elementos tienen flex-shrink establecido a 1, se contraerán de manera proporcional. 
+-Si un elemento tiene flex-shrink establecido a 2, se contraerá el doble que los elementos con flex-shrink establecido a 1.
+
+-Es importante tener en cuenta que flex-shrink solo tiene efecto cuando hay espacio insuficiente en el contenedor para acomodar todos los elementos. 
+-Si hay suficiente espacio, la propiedad no tiene impacto y los elementos se mantendrán en su tamaño original definido por flex-basis o su contenido.
+
+*order: se utiliza para controlar el orden en el que se muestran los elementos flexibles dentro de su contenedor.
+-Por defecto, los elementos flexibles se muestran en el orden en el que aparecen en el código HTML, 
+-pero la propiedad order permite reorganizarlos según sea necesario sin modificar el marcado HTML.
+-valor: Un número que determina el orden en el que se mostrará el elemento flexible en relación con otros elementos flexibles en el mismo contenedor.
+-Los elementos se ordenan de menor a mayor, por lo que un valor menor colocará el elemento antes en el orden, y un valor mayor lo colocará después.
+-La propiedad order permite reorganizar visualmente los elementos flexibles sin alterar su posición en el código HTML, 
+-lo que puede ser útil para adaptarse a diferentes diseños y disposiciones.
+
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+
+GRID
+CSS Grid Layout, comúnmente conocido como Grid, es un sistema de diseño bidimensional que permite a los desarrolladores crear diseños complejos y flexibles para interfaces web. 
+Con CSS Grid, puedes dividir el espacio de la página en filas y columnas, y luego colocar elementos dentro de esas áreas definidas, 
+proporcionando un control preciso sobre el diseño y la estructura de una página web.
+Para indicar que un contenedor va a ser grid utilizamos:
+
+*display: grid;
+
+(GRID CONTAINER)
+*grid-template-rows: valor1 valor2 ...:  Se utiliza para definir el tamaño y la disposición de las filas en una cuadrícula. 
+-Con esta propiedad, puedes especificar el tamaño de cada fila individualmente o utilizar diferentes unidades de medida para definir las filas.
+-También puedes utilizar la función repeat() para repetir un patrón de tamaño de fila:
+-grid-template-rows: repeat(3, 100px);
+
+*grid-template-colums): Se utiliza para definir el tamaño y la disposición de las columnas en una cuadrícula.
+-Al igual que con grid-template-rows, con esta propiedad puedes especificar el tamaño de cada columna individualmente o utilizar diferentes unidades de medida para definir las columnas.
+-grid-template-columns: valor1 valor2 ...;
+-También puedes utilizar la función repeat() para repetir un patrón de tamaño de columna:
+-grid-template-columns: repeat(3, 100px);
+*Tambien podemos utilizar "1fr" para indicar que las filas y/o columnas completen el espacio sobrante: "grid-template-columns: 100px 200px 1fr;"
+
+
+*grid-row-gap: Se utiliza para establecer el espacio entre las filas en una cuadrícula. 
+-Este espacio se agrega entre cada fila y no se aplica al espacio entre el contenedor de la cuadrícula y el primer o último elemento de la fila.
+-grid-row-gap: valor; valor: Puede ser un valor en píxeles (px), porcentajes (%), em (em), rem (rem), etc
+
+*grid-colum-gap: Se utiliza para establecer el espacio entre las columnas en una cuadrícula. 
+-Este espacio se agrega entre cada columna y no se aplica al espacio entre el contenedor de la cuadrícula y el primer o último elemento de la columna.
+-grid-column-gap: valor; valor: Puede ser un valor en píxeles (px), porcentajes (%), em (em), rem (rem), etc
+
+*grid-gap: row colum: Es una propiedad abreviada que se utiliza para establecer el espacio entre las filas y las columnas en una cuadrícula. 
+-Esta propiedad es útil cuando deseas establecer el mismo espacio tanto entre filas como entre columnas de una manera más concisa.
+-grid-gap: valor-filas valor-columnas;
+
+
+(GRID ITEM)
+*grid-row y grid-column: Son propiedades abreviadas que se utilizan para especificar tanto el inicio como el final de las líneas de filas y columnas en las que un elemento debe colocarse
+-dentro de una cuadrícula. Estas propiedades proporcionan una forma conveniente de definir la posición de un elemento en una cuadrícula CSS. 
+.elemento-grid {
+  grid-row: inicio / fin;
+  grid-column: inicio / fin;
+}
+
+-inicio: Puede ser un número entero que representa el número de línea de la cuadrícula en la que el elemento debe comenzar, o un nombre de línea que identifique una línea nombrada.
+-fin: Puede ser un número entero que representa el número de línea de la cuadrícula en la que el elemento debe terminar, o un nombre de línea que identifique una línea nombrada.
+
+.elemento-grid {
+  grid-row: 2 / 4;  El elemento comienza en la segunda línea y termina en la cuarta línea 
+  grid-column: 1 / span 2;  El elemento comienza en la primera columna y se extiende por 2 columnas 
+}
+(span: sirve para indicar hasta que fila/columna se tiene que expandir)
+
+También puedes usar nombres de línea en lugar de números:
+.elemento-grid {
+  grid-row: header-start / footer-end;  El elemento comienza en la línea nombrada 'header-start' y termina en la línea nombrada 'footer-end' 
+  grid-column: sidebar-start / content-end;  El elemento comienza en la línea nombrada 'sidebar-start' y termina en la línea nombrada 'content-end' 
+}
+
+*repeat():  se utiliza para repetir un patrón de tamaño de fila o columna en una cuadrícula. 
+-Esta función es especialmente útil cuando deseas especificar un número repetido de filas o columnas con el mismo tamaño o patrón de tamaño.
+grid-template-rows: repeat(numero, tamaño);
+grid-template-columns: repeat(numero, tamaño);
+-numero: Especifica cuántas veces se debe repetir el tamaño especificado.
+-tamaño: Define el tamaño o el patrón de tamaño que se repetirá.
+.contenedor-grid {
+  display: grid;
+  grid-template-rows: repeat(4, 100px);
+}
+
+GRID IMPLICITO Y GRID EXPLICITO
+
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+
+TRANSITION
+-se refiere a la animación fluida de un elemento HTML entre diferentes estados, como cuando un elemento cambia de color, tamaño, posición u opacidad.
+-Las transiciones suelen utilizarse para mejorar la experiencia del usuario al hacer que los cambios sean más fluidos y menos abruptos.
+
+*transition-property: Esta propiedad especifica qué propiedades CSS serán afectadas por la transición. Los posibles valores incluyen:
+-all: Transición de todas las propiedades. (no recomendado por exceso de recursos)
+-Propiedades CSS individuales como color, background-color, opacity, etc.
+
+*transition-duration: Esta propiedad especifica la duración de la transición. Los valores pueden ser:
+-En segundos (por ejemplo, 0.5s, 1s, etc.).
+-En milisegundos (por ejemplo, 500ms, 1000ms, etc.).
+
+*transition-timing-function: Esta propiedad especifica cómo cambia la velocidad de la transición a medida que progresa. Los valores comunes son:
+-ease: Comienza lentamente, luego acelera y finaliza lentamente.
+-linear: Cambio constante durante toda la transición.
+-ease-in: Comienza lentamente y acelera hacia el final.
+-ease-out: Comienza rápidamente y desacelera hacia el final.
+-ease-in-out: Comienza lentamente, acelera en el medio y luego desacelera nuevamente.
+
+*transition-delay: Esta propiedad especifica el tiempo que debe pasar antes de que la transición comience. Los valores pueden ser en segundos o milisegundos, como en 1s o 500ms.
+
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+
+ANIMACIONES
+Las animaciones en CSS permiten crear efectos visuales y de movimiento en elementos HTML sin necesidad de utilizar JavaScript. 
+Se pueden definir usando la regla "@keyframes" para especificar los pasos de la animación y luego aplicarla a un elemento utilizando la propiedad animation.
+
+*@keyframes mover {
+   0% { left: 0; }  from: Define el estado inicial de la animación. Es equivalente a 0%.
+   50% { left: 50%; } 0% - 100%: Puedes especificar estados intermedios entre 0% y 100%, representando el progreso de la animación.
+   100% { left: 100%; } to: Define el estado final de la animación. Es equivalente a 100%.
+}
+
+*Estilos para el cuadrado 
+.cuadrado {
+   width: 50px;
+   height: 50px;
+   background-color: blue;
+   position: relative;
+   animation: mover 2s linear infinite; /Aplicar la animación 
+}
+
+PROPIEDADES Y VALORES DE LAS ANIMACIONES
+*animation-name: Especifica el nombre de la animación definida con @keyframes. Se puede usar uno o varios nombres de animación separados por comas.
+-none: No se aplica ninguna animación.
+-nombre-de-animacion: El nombre de la animación definida con @keyframes.
+
+*animation-duration: Especifica la duración de la animación.
+-Valores en segundos (por ejemplo, 2s para 2 segundos).
+-Valores en milisegundos (por ejemplo, 200ms para 200 milisegundos).
+
+*animation-delay: Especifica el tiempo que debe pasar antes de que comience la animación.
+-Valores en segundos (por ejemplo, 1s para 1 segundo).
+-Valores en milisegundos (por ejemplo, 500ms para 500 milisegundos).
+
+*animation-iteration-count: Especifica el número de veces que se debe repetir la animación.
+-infinite: La animación se repite infinitamente.
+-Un número específico de repeticiones (por ejemplo, 3 para 3 repeticiones).
+
+*animation-direction: Especifica si la animación debe reproducirse hacia adelante y hacia atrás, o solo hacia adelante.
+-normal: La animación se reproduce hacia adelante.
+-reverse: La animación se reproduce hacia atrás.
+-alternate: La animación se reproduce hacia adelante y luego hacia atrás en cada iteración.
+-alternate-reverse: La animación se reproduce hacia atrás y luego hacia adelante en cada iteración.
+
+*animation-fill-mode: Especifica cómo se aplican los estilos del elemento antes y después de la animación.
+-none: No se aplica ningún estilo.
+-forwards: Los estilos finales se mantienen después de la animación.
+-backwards: Los estilos iniciales se aplican antes de que comience la animación.
+-both: Se aplican los estilos tanto antes como después de la animación.
+
+*animation-play-state: Especifica si la animación está en ejecución o pausada.
+-running: La animación está en ejecución.
+-paused: La animación está pausada.
+
+*animation-timing-function: Especifica cómo cambia la velocidad de la animación.
+-ease: Comienza lentamente, luego acelera y finaliza lentamente.
+-linear: Cambio constante durante toda la transición.
+-ease-in: Comienza lentamente y acelera hacia el final.
+-ease-out: Comienza rápidamente y desacelera hacia el final.
+-ease-in-out: Comienza lentamente, acelera en el medio y luego desacelera nuevamente.
+
+CURVA DE BEZIER https://cubic-bezier.com/#.17,.67,.83,.67 (generar curva)
+-cubic-bezier(x1, y1, x2, y2): Una función de temporización de cubic bezier se utiliza para definir una curva de aceleración personalizada para animaciones en CSS.
+-Esta función permite un control preciso sobre cómo cambia la velocidad de una animación a medida que progresa en el tiempo.
+
+-La función cubic-bezier() toma cuatro argumentos, que representan las coordenadas de dos puntos de control en un plano cartesiano. 
+-Estos puntos de control definen la forma de la curva. Los valores de los argumentos deben estar entre 0 y 1.
+
+-cubic-bezier(x1, y1, x2, y2)
+-(x1, y1) son las coordenadas del primer punto de control.
+-(x2, y2) son las coordenadas del segundo punto de control.
+
+-(x1, y1) son las coordenadas del primer punto de control.
+-(x2, y2) son las coordenadas del segundo punto de control.
+
+-El punto de inicio de la curva es siempre (0, 0) y el punto final es siempre (1, 1). Los valores de las coordenadas x deben estar en el rango de 0 a 1. 
+-Los valores de las coordenadas y pueden ser cualquier número real.
+
+-animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+
+-En este ejemplo, la curva de aceleración personalizada está definida por los puntos de control (0.25, 0.1) y (0.25, 1).
+-La forma de esta curva determinará cómo cambia la velocidad de la animación a lo largo del tiempo. 
+-Puedes ajustar los valores de los puntos de control para crear diferentes efectos de aceleración y desaceleración en tus animaciones.
+
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+
+TRANSFORM
+Permite modificar la apariencia de un elemento cambiando su posición, tamaño, rotación, escala y más, sin afectar al diseño del documento o al flujo del contenido.
+*translate(): Mueve un elemento a lo largo del eje X y/o Y. (Recomendado para hacer animaciones)
+-translate(x, y): Mueve el elemento x píxeles horizontalmente y y píxeles verticalmente.
+-Ejemplo: transform: translate(50px, 100px);.
+
+*rotate(): Rota un elemento en un ángulo dado.
+-rotate(angle): Rota el elemento en el ángulo especificado en grados.
+-Ejemplo: transform: rotate(45deg);.
+
+*scale(): Escala un elemento en anchura y/o altura.
+-scale(x, y): Escala el elemento en el eje X por x veces y en el eje Y por y veces.
+-Ejemplo: transform: scale(1.5, 1.5);
+
+*skew(): Inclina un elemento a lo largo del eje X y/o Y.
+-skew(x-angle, y-angle): Inclina el elemento en el ángulo especificado en grados.
+-Ejemplo: transform: skew(30deg, 20deg);
+
+*matrix(): Permite especificar una transformación 2D mediante una matriz de 6 valores.
+-matrix(a, b, c, d, e, f): Donde a, b, c, d, e, y f son valores numéricos que definen la matriz de transformación.
+-Ejemplo: transform: matrix(1, 0, 0, 1, 100, 100);
+
+-Estos son los valores principales que puedes utilizar con la propiedad transform para manipular la apariencia de elementos en una página web.
+-Puedes combinar múltiples transformaciones separándolas con un espacio dentro de la propiedad transform. Por ejemplo:
+
+-transform: translate(50px, 50px) rotate(45deg) scale(1.5);
+
+Esto moverá el elemento 50 píxeles hacia la derecha y hacia abajo, lo rotará 45 grados en sentido horario y lo escalará al 150% de su tamaño original.
+
+CLIP PATH https://bennettfeely.com/clippy/
+Para hacer mas rapido las formas sin necesidad de usar el "transform"
+
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+
+BACKGROUND
+*background-color: Define el color de fondo del elemento.
+-Valores: Cualquier valor válido de color CSS, como color_name, #RRGGBB, rgb(), rgba(), hsl(), hsla(), etc.
+
+*background-image: Especifica una o más imágenes para usar como fondo.
+-Valores: url() para especificar la ruta de una imagen o none para indicar que no se utilizará ninguna imagen.
+
+*background-repeat: Controla cómo se repiten las imágenes de fondo.
+-Valores: repeat, repeat-x, repeat-y, no-repeat.
+
+*background-position: Especifica la posición inicial de una imagen de fondo.
+-Valores: Pueden ser valores de longitud (px, %, em, etc.), palabras clave (top, center, bottom, left, right), o pares de valores (por ejemplo, 10px 20px).
+
+*background-size: Define el tamaño de la imagen de fondo.
+-Valores: auto, cover, contain, o valores de longitud (px, %, etc.)
+
+*background-attachment: Especifica si la imagen de fondo está fija o se desplaza con el contenido.
+-Valores: scroll, fixed, local.
+
+*background-clip: Controla cómo se aplican los estilos a un elemento en relación con su fondo.
+-Valores: border-box, padding-box, content-box, text.
+
+*background-origin: Define el origen de la imagen de fondo (determina dónde comienza el fondo en el elemento).
+-Valores: border-box, padding-box, content-box.
+
+*background-blend-mode: Especifica cómo se mezcla el fondo con el contenido del elemento.
+-Valores: Modos de mezcla CSS, como normal, multiply, screen, overlay, color-dodge, color-burn, etc.
+
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+
+VARIABLES
+las variables son contenedores que almacenan valores reutilizables, lo que permite una fácil manipulación y mantenimiento del código.
+Se definen utilizando la sintaxis --nombre-variable: valor;. Estas variables pueden ser utilizadas en cualquier parte del documento CSS donde se apliquen, lo que facilita
+la modificación de estilos en múltiples lugares con un solo cambio en el valor de la variable.
+
+:root {
+  --color-primario: #3498db;
+  --color-secundario: #2ecc71;
+}
+
+ Uso de variables 
+.elemento {
+  background-color: var(--color-primario);
+}
+ 
+.otro-elemento {
+   color: var(--color-secundario);
+}
+
+--color-primario y --color-secundario son variables CSS que almacenan valores de colores.
+:root es un selector especial que selecciona el elemento raíz del documento (es decir, la etiqueta <html>). Las variables definidas aquí están disponibles en todo el documento CSS.
+var(--nombre-variable) es la sintaxis para usar una variable CSS. Se sustituirá por el valor de la variable correspondiente.
+
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+
+FILTER
+se utiliza para aplicar efectos de filtros a elementos HTML, lo que permite ajustar la apariencia visual de los elementos de manera dinámica
+
+*blur(): Aplica un desenfoque al elemento.
+-Valores: Longitud, en píxeles, que determina el grado de desenfoque.
+
+*brightness(): Ajusta el brillo del elemento.
+-Valores: Un número que indica el factor de brillo, donde 1 es normal, menos de 1 es más oscuro y más de 1 es más brillante.
+
+*contrast(): Ajusta el contraste del elemento.
+-Valores: Un número que indica el factor de contraste, donde 1 es normal, menos de 1 es menos contraste y más de 1 es más contraste.
+
+*drop-shadow(): Agrega una sombra alrededor del elemento.
+-Valores: Desplazamiento horizontal, desplazamiento vertical, desenfoque y color de la sombra.
+
+*grayscale(): Convierte el elemento en escala de grises.
+-Valores: Un número entre 0 (ningún gris) y 1 (completamente en escala de grises).
+
+*hue-rotate(): Gira el matiz del elemento.
+-Valores: Un ángulo, en grados, para girar el matiz del elemento.
+
+*invert(): Invierte los colores del elemento.
+-Valores: Un número entre 0 (ninguna inversión) y 1 (completa inversión).
+
+*opacity(): Ajusta la opacidad del elemento.
+-Valores: Un número entre 0 (completamente transparente) y 1 (completamente opaco).
+
+*saturate(): Ajusta la saturación del elemento.
+-Valores: Un número que indica el factor de saturación, donde 1 es normal, menos de 1 es menos saturado y más de 1 es más saturado.
+
+*sepia(): Aplica un tono sepia al elemento.
+-Valores: Un número entre 0 (ningún sepia) y 1 (completo sepia).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
