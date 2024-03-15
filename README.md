@@ -1,5 +1,6 @@
 CSS COURSE YOUTUBE (SOY DALTO)
 
+
 Introduction
 Course Start
 Text Editor
@@ -27,7 +28,6 @@ Z Index
 Absolute Position
 Fixed Position
 Sticky Position
-
 ------------- Intermediate CSS -------------
 
 Display
@@ -69,7 +69,6 @@ Naming Grid Lines
 Grid Shorthands
 Responsive Design
 Basic Responsive Structure
-
 ------------- Advanced CSS -------------
 
 Transition
